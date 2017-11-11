@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+
+   <arg name="model" default="$(find bebop_gazebo)/urdf/bebop.urdf.xacro"/>
+
+   <param name="robot_description" command="$(find xacro)/xacro.py '$(arg model)'" />
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
+
+   <node name="spawn_robot" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+    args="-param robot_description -urdf -model bebop"/>
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="debug" value="false" />
+        <arg name="paused" value="false"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="headless" value="false"/>
+    </include>
+
+</launch>
