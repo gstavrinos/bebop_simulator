@@ -13,7 +13,7 @@
 
   <link name="base_link">
   <inertial>
-    <mass value="0.4" />
+    <mass value="2.477" />
     <origin xyz="0 0 0" />
     <inertia ixx="0.01152" ixy="0.0" ixz="0.0" iyy="0.01152" iyz="0.0" izz="0.0218" />
     <!-- Inertia is just copy-pasted from the hector_quadrotor. Sorry! -->
@@ -71,4 +71,90 @@
       <material>Gazebo/Blue</material>
     </gazebo>
 
+
+<gazebo>
+      <plugin name="quadrotor_simple_controller" filename="libhector_gazebo_quadrotor_simple_controller.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>10.0</updateRate>
+        <bodyName>base_link</bodyName>
+        <topicName>cmd_vel</topicName>
+        <rollpitchProportionalGain>10.0</rollpitchProportionalGain>
+        <rollpitchDifferentialGain>5.0</rollpitchDifferentialGain>
+        <rollpitchLimit>0.5</rollpitchLimit>
+        <yawProportionalGain>2.0</yawProportionalGain>
+        <yawDifferentialGain>1.0</yawDifferentialGain>
+        <yawLimit>1.5</yawLimit>
+        <velocityXYProportionalGain>5.0</velocityXYProportionalGain>
+        <velocityXYDifferentialGain>1.0</velocityXYDifferentialGain>
+        <velocityXYLimit>2</velocityXYLimit>
+        <velocityZProportionalGain>5.0</velocityZProportionalGain>
+        <velocityZDifferentialGain>1.0</velocityZDifferentialGain>
+        <velocityZLimit>0.5</velocityZLimit>
+        <maxForce>30</maxForce>
+        <motionSmallNoise>0.05</motionSmallNoise>
+        <motionDriftNoise>0.03</motionDriftNoise>
+        <motionDriftNoiseTime>5.0</motionDriftNoiseTime>
+      </plugin>
+
+      <plugin name="quadrotor_groundtruth_sim" filename="libgazebo_ros_p3d.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>100.0</updateRate>
+        <bodyName>base_link</bodyName>
+        <topicName>bebop/odom</topicName>
+        <gaussianNoise>0.0</gaussianNoise>
+        <frameName>/world</frameName>
+      </plugin>
+
+      <plugin name="quadrotor_aerodynamics" filename="libhector_gazebo_quadrotor_aerodynamics.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>100.0</updateRate>
+        <bodyName>base_link</bodyName>
+        <frameId>base_link</frameId>
+      </plugin>
+
+      <plugin name="quadrotor_propulsion" filename="libhector_gazebo_quadrotor_propulsion.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <bodyName>base_link</bodyName>
+        <frameId>base_link</frameId>
+        <controlRate>100.0</controlRate>
+        <controlTolerance>0.01</controlTolerance>
+        <controlDelay>0.01</controlDelay>
+        <motorStatusRate>0.0</motorStatusRate>
+        <triggerTopic></triggerTopic>
+        <topicName></topicName>
+        <pwmTopicName></pwmTopicName>
+        <supplyTopic></supplyTopic>
+        <wrenchTopic></wrenchTopic>
+        <statusTopic></statusTopic>
+      </plugin>
+    </gazebo>
+
+<gazebo reference="camera_base_link">
+  <sensor type="camera" name="bebop_camera_sensor">
+        <update_rate>30.0</update_rate>
+        <camera name="front">
+          <horizontal_fov>180</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>jpeg</format>
+          </image>
+
+          <clip>0.01
+            <near>0.01</near>
+            <far>100</far>
+          </clip>
+        </camera>
+        <plugin name="bebop_camera_controller" filename="libgazebo_ros_camera.so">
+    <cameraName>/bebop/camera</cameraName>
+          <alwaysOn>true</alwaysOn>
+          <updateRate>30.0</updateRate>
+          <imageTopicName>/bebop/camera/image_raw</imageTopicName>
+          <cameraInfoTopicName>/bebop/camera/camera_info</cameraInfoTopicName>
+          <frameName>camera_base_link</frameName>
+        </plugin>
+  </sensor>
+
+    </gazebo>
 </robot>
