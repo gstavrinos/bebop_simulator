@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:arg name="world_frame" default="world"/>
+  <xacro:arg name="base_link_frame" default="base_link"/>
+
+  <xacro:include filename="$(find bebop_gazebo)/urdf/bebop_sensors.gazebo.xacro" />
+  <xacro:include filename="$(find bebop_gazebo)/urdf/bebop_controller.gazebo.xacro" />
+  <xacro:include filename="$(find bebop_gazebo)/urdf/bebop_propulsion.gazebo.xacro" />
+  <xacro:include filename="$(find bebop_gazebo)/urdf/bebop_aerodynamics.gazebo.xacro" />
+
+  <!-- Quadrotor Gazebo Plugins -->
+  <xacro:bebop_sensors />
+  <xacro:bebop_controller />
+  <xacro:bebop_propulsion />
+  <xacro:bebop_aerodynamics />
+
+
+</robot>

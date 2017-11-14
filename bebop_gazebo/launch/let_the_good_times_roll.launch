@@ -1,6 +1,15 @@
 <?xml version="1.0"?>
 <launch>
 
+    <!--<node pkg="tf" type="static_transform_publisher" name="odom_link1" args="0 0 0 0 0 0 /world /odom 100"/>-->
+    <node pkg="tf" type="static_transform_publisher" name="odom_link2" args="0 0 0 0 0 0 /odom /base_link 100"/>
+
+    <arg name="controllers" default="
+    controller/position
+    controller/velocity
+    controller/attitude
+    "/>
+
    <arg name="model" default="$(find bebop_gazebo)/urdf/bebop.urdf.xacro"/>
 
    <param name="robot_description" command="$(find xacro)/xacro.py '$(arg model)'" />
@@ -15,6 +24,10 @@
         <arg name="paused" value="false"/>
         <arg name="use_sim_time" value="true"/>
         <arg name="headless" value="false"/>
+    </include>
+
+    <include file="$(find hector_quadrotor_controllers)/launch/controller.launch">
+        <arg name="controllers" value="$(arg controllers)"/>
     </include>
 
 </launch>

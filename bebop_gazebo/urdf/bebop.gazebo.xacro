@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+
+<robot name="bebop" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="$(find bebop_gazebo)/urdf/bebop.urdf.xacro" />
+    <xacro:include filename="$(find bebop_gazebo)/urdf/bebop_plugins.gazebo.xacro" />
+</robot>
