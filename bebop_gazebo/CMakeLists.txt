@@ -6,5 +6,3 @@ catkin_package()
 
 include_directories()
 
-add_executable()
-
