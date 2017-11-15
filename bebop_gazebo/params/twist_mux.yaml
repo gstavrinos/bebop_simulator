@@ -1,0 +1,15 @@
+topics:
+- name    : floatie
+  topic   : bebop_hover/cmd_vel
+  timeout : 1.0
+  priority: 1
+- name    : normal
+  topic   : bebop/cmd_vel
+  timeout : 0.5
+  priority: 16
+
+locks:
+- name    : e_stop
+  topic   : e_stop
+  timeout : 0.0
+  priority: 255
