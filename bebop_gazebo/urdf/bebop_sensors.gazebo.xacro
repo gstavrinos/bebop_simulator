@@ -26,7 +26,7 @@
           <updateRate>30.0</updateRate>
           <imageTopicName>/bebop/image_raw</imageTopicName>
           <cameraInfoTopicName>/bebop/camera_info</cameraInfoTopicName>
-          <frameName>camera_base_link</frameName>
+          <frameName>camera_optical</frameName>
         </plugin>
       </sensor>
     </gazebo>
