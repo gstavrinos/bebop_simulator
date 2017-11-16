@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="ar_helipad">
+    <link name="link">
+      <inertial>
+        <mass>10.0</mass>
+        <inertia>
+          <ixx>0.1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.1</iyy>
+          <iyz>0</iyz>
+          <izz>0.1</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision_helipad">
+        <pose>0 0 0.0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.4 0.5 0.01</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual_helipad">
+        <pose>0 0 0.0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.45 0.55 0.009</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://ar_helipad/materials/scripts</uri>
+            <uri>model://ar_helipad/materials/textures</uri>
+            <name>Helipad/Diffuse</name>
+          </script>
+        </material>
+      </visual>
+      <visual name="visual_marker3">
+        <pose>0.173 0.223 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.054 0.054 0.01</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://ar_helipad/materials/scripts</uri>
+            <uri>model://ar_helipad/materials/textures</uri>
+            <name>Marker3/Diffuse</name>
+          </script>
+        </material>
+      </visual>
+      <visual name="visual_marker4">
+        <pose>-0.173 -0.223 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.054 0.054 0.01</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://ar_helipad/materials/scripts</uri>
+            <uri>model://ar_helipad/materials/textures</uri>
+            <name>Marker4/Diffuse</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>
