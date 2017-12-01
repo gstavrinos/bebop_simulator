@@ -3,11 +3,6 @@
 <launch>
   <arg name="name" default="bebop"/>
   <arg name="model" default="$(find bebop_gazebo)/urdf/bebop.gazebo.xacro"/>
-  <arg name="controllers" default="
-    controller/position
-    controller/velocity
-    controller/attitude
-    "/>
 
   <arg name="x" default="0.0"/>
   <arg name="y" default="0.0"/>
@@ -49,9 +44,7 @@
   <node name="hector_to_bebop" pkg="bebop_gazebo" type="hector_to_bebop.py" output="screen"/>
 
   <!-- load controllers -->
-  <include file="$(find bebop_gazebo)/launch/controller.launch">
-    <arg name="controllers" value="$(arg controllers)"/>
-  </include>
+  <include file="$(find bebop_gazebo)/launch/controller.launch"/>
 
   <!-- load actions -->
   <include file="$(find bebop_gazebo)/launch/actions.launch" />
