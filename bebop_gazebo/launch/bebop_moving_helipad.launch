@@ -6,6 +6,7 @@
   <arg name="gui" default="true"/>
   <arg name="headless" default="false"/>
   <arg name="debug" default="false"/>
+  <env name="GAZEBO_MODEL_PATH" attr="$(find bebop_gazebo)/models:$GAZEBO_MODEL_PATH" />
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="paused" value="$(arg paused)"/>
