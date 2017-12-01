@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <include file="$(find bebop_gazebo)/launch/bebop_moving_helipad.launch" />
+  <include file="$(find ar_helipad)/launch/bebop_helipad_individual.launch" />
+  <node pkg="aerial_global_planner" type="global_planner.py" name="aerial_global_planner" output="screen" />
+  <node pkg="aerial_local_planner" type="local_planner.py" name="aerial_local_planner" output="screen" />
+  <node pkg="tf_velocity_estimator" type="velocity_estimator.py" name="tf_velocity_estimator" output="screen" />
+  <node pkg="rviz" type="rviz" name="rviz" output="screen" args="-d $(find bebop_gazebo)/rviz/rviz.rviz"/>
+
+</launch>
